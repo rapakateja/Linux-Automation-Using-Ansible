@@ -1,0 +1,13 @@
+- name: Playbook for Date Command
+  hosts: host1
+  tasks: 
+    - name: Date command
+      command: date
+      register: x
+    - name: Print output of the date command
+      debug: 
+        var: x
+    - name: Print Facts
+      debug:
+              var: ansible_product_name
+

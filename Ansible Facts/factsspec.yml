@@ -1,0 +1,10 @@
+- name: " Using Date command for specific OS"
+  hosts: host1
+  tasks: 
+     - name: "date command"
+       command: date
+       when: ansible_machine == "x86_32"
+       register: x
+     - name: "Output of the date command"
+       debug: 
+        var: x

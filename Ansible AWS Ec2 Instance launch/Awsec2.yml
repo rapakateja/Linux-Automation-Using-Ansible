@@ -1,0 +1,27 @@
+- name: "Ec2 configuration"
+  hosts: localhost
+  vars_files:
+          - keys.yml
+  tasks:
+          - name: "Lanuch EC2 Instance"
+            ec2:
+                      region: "ap-south-1"
+                      image: "ami-0ebc1ac48dfd14136"
+                      instance_type: "t2.micro"
+                      count: 1
+                      vpc_subnet_id: "subnet-dfaed393"
+                      volumes:
+                              - device_name: /dev/xvda
+                                volume_type: "gp2"
+                                volume_size: 8
+                                delete_on_termination: true
+                      group_id: "sg-fef9b99a"
+                      key_name: "Key"
+                      wait: yes
+                      assign_public_ip: yes
+                      state: "present" 
+                      aws_access_key: "{{ access_key }}"
+                      aws_secret_key: "{{ secret_key }}"
+
+
+               
